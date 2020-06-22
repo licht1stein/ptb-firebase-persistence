@@ -1,0 +1,1 @@
+from .firebase_persistence import FirebasePersistence
