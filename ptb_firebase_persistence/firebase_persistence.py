@@ -1,7 +1,7 @@
 import json
 import os
 from ast import literal_eval
-from collections import defaultdict, Mapping
+from collections import defaultdict
 from typing import Dict
 
 import firebase_admin
@@ -31,10 +31,10 @@ class FirebasePersistence(BasePersistence):
         )
 
     @classmethod
-    def from_environment(cls):
+    def from_environment(cls, **kwargs):
         credentials = json.loads(os.environ['FIREBASE_CREDENTIALS'])
         database_url = os.environ['FIREBASE_URL']
-        return cls(database_url=database_url, credentials=credentials)
+        return cls(database_url=database_url, credentials=credentials, **kwargs)
 
     def get_user_data(self):
         data = self.fb_user_data.get() or {}
