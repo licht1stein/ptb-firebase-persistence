@@ -1,5 +1,7 @@
 ![](https://github.com/python-telegram-bot/logos/blob/master/logo/png/ptb-logo_240.png?raw=true)
 # Firebase Persistence for [python-telegram-bot](https://python-telegram-bot.org/)
+![PyPI](https://img.shields.io/pypi/v/ptb-firebase-persistence)
+
 
 This is an implementation of python-telegram-bot [BasePersistence](https://python-telegram-bot.readthedocs.io/en/stable/telegram.ext.basepersistence.html?highlight=basepersistence) 
 class that uses [Google Firebase](https://firebase.google.com/) as persistence back-end. 
@@ -7,7 +9,12 @@ This has a very nice advantage of being able to look at your `user_data`, `chat_
 and `convesations` real-time using the firebase web app.
 
 # Installation
+The library obviously requires (but does not install) python-telegram-bot. It also requires *and installs* 
+officeial library foor Google Firebase: [firebase-admin](https://firebase.google.com/docs/admin/setup/)
 
+```bash
+pip install ptb-firebase-persistence
+```
 
 # Usage
 
@@ -20,7 +27,7 @@ First of all you need to obtain firebase credentials, that look like this:
   "project_id": "YOUR_ID",
   "private_key_id": "YOUR_PRIVATE_KEY",
   "private_key": "-----BEGIN PRIVATE KEY-----\nMII...EwQ=\n-----END PRIVATE KEY-----\n",
-  "client_email": "firebase-adminsdk-odh1e@SOME_DOMAIN.iam.gserviceaccount.com",
+  "client_email": "firebase-adminsdk-SOME_STRING@SOME_DOMAIN.iam.gserviceaccount.com",
   "client_id": "11743776666698009",
   "auth_uri": "https://accounts.google.com/o/oauth2/auth",
   "token_uri": "https://oauth2.googleapis.com/token",
@@ -44,7 +51,7 @@ from ptb_firebase_persistence import FirebasePersistence
 from telegram.ext import Updater
 
 
-persistence = FirebasePersistence.from_environment()
+my_persistence = FirebasePersistence.from_environment()
 
 updater: Updater = Updater(
     'BOT_TOKEN',
@@ -61,7 +68,7 @@ from ptb_firebase_persistence import FirebasePersistence
 from telegram.ext import Updater
 
 
-persistence = FirebasePersistence(database_url='YOUR_DATABASE_URL', credentials='YOUR_CREDENTIALS_DICT')
+my_persistence = FirebasePersistence(database_url='YOUR_DATABASE_URL', credentials='YOUR_CREDENTIALS_DICT')
 
 updater: Updater = Updater(
     'BOT_TOKEN',
@@ -69,3 +76,5 @@ updater: Updater = Updater(
     use_context=True,
 )
 ```
+
+That's it! You can now watch your data change live on Firebase.
