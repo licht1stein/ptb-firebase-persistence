@@ -1,9 +1,10 @@
 [tool.poetry]
 name = "ptb_firebase_persistence"
-version = "0.1.0"
+version = "0.1.1"
 description = ""
 authors = ["Mikhail Beliansky <mb@blaster.ai>"]
 readme = "README.md"
+homepage = "https://github.com/licht1stein/ptb-firebase-persistence"
 
 [tool.poetry.dependencies]
 python = "^3.7"
