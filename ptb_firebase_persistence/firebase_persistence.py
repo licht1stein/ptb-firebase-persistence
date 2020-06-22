@@ -11,12 +11,12 @@ from telegram.ext import BasePersistence
 
 class FirebasePersistence(BasePersistence):
     def __init__(
-            self,
-            database_url: str,
-            credentials: dict,
-            store_user_data=True,
-            store_chat_data=True,
-            store_bot_data=True,
+        self,
+        database_url: str,
+        credentials: dict,
+        store_user_data=True,
+        store_chat_data=True,
+        store_bot_data=True,
     ):
         cred = firebase_admin.credentials.Certificate(credentials)
         self.app = firebase_admin.initialize_app(cred, {"databaseURL": database_url})
@@ -32,8 +32,8 @@ class FirebasePersistence(BasePersistence):
 
     @classmethod
     def from_environment(cls, **kwargs):
-        credentials = json.loads(os.environ['FIREBASE_CREDENTIALS'])
-        database_url = os.environ['FIREBASE_URL']
+        credentials = json.loads(os.environ["FIREBASE_CREDENTIALS"])
+        database_url = os.environ["FIREBASE_URL"]
         return cls(database_url=database_url, credentials=credentials, **kwargs)
 
     def get_user_data(self):
